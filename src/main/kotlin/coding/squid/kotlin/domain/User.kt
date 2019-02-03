@@ -8,22 +8,14 @@ import javax.persistence.*
 class User(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        var Id: Int?,
+        val Id: Int? = null,
         @Column(name = "name")
-        var name: String?,
+        var name: String? = null,
         @Column(name = "age")
-        var age: Int?,
+        var age: Int? = null,
         @Column(name = "registered_at")
-        var registeredAt: LocalDateTime?
+        var registeredAt: LocalDateTime? = null
 ) {
-
-    fun registerName(name: String) {
-        this.name = name
-    }
-
-    fun registerAge(age: Int) {
-        this.age = age
-    }
 
     @PrePersist
     fun onPersist() {

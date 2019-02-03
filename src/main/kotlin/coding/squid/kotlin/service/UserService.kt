@@ -12,9 +12,9 @@ class UserService(private val userRepository: UserRepository) {
 
     @Transactional
     fun registerUser(userInfo: RegisterUserDto) {
-        val user: User = User(null, null, null, null)
-        user.registerName(userInfo.name)
-        user.registerAge(userInfo.age)
+        val user: User = User()
+        user.name = userInfo.name
+        user.age = userInfo.age
 
         userRepository.save(user)
     }
