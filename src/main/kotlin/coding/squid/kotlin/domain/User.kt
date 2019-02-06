@@ -5,7 +5,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "tb_user")
-data class User(
+data class User private constructor(
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         var Id: Int?,
@@ -16,7 +16,14 @@ data class User(
         @Column(name = "registered_at")
         var registeredAt: LocalDateTime
 ) {
-    constructor(name: String, age: Int) : this(null, name, age, LocalDateTime.now())
+    private constructor(name: String, age: Int): this(null, name, age, LocalDateTime.now())
+
+    companion object {
+
+        fun createUser(name: String, age: Int): User {
+            return User(name, age)
+        }
+    }
 
     @PrePersist
     fun onPersist() {
